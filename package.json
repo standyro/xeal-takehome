@@ -1,0 +1,42 @@
+{
+  "name": "xeal-takehome",
+  "version": "1.0.0",
+  "description": "## Feature Requirements ### Backend",
+  "main": "server.js",
+  "scripts": {
+    "dev": "./node_modules/.bin/nodemon -r dotenv/config server.js",
+    "lint": "eslint --fix ./*.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docker-build": "docker build -t xeal-takehome .",
+    "docker-run": "docker run -p 8080:8080 -d xeal-takehome",
+    "docker-kill": "docker rm $(docker stop $(docker ps -a -q --filter ancestor=xeal-takehome))"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/standyro/xeal-takehome.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/standyro/xeal-takehome/issues"
+  },
+  "homepage": "https://github.com/standyro/xeal-takehome#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "express-basic-auth": "^1.2.1",
+    "flatted": "^3.2.7",
+    "haversine-distance": "^1.2.1",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
+    "mongodb": "^4.9.1"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.2",
+    "eslint": "^8.23.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "nodemon": "^2.0.19"
+  }
+}
