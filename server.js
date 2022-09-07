@@ -151,9 +151,12 @@ app.get('/users/:username', async (req, res) => {
 });
 
 app.delete('/users/:id', async (req, res) => {
-//   const user = await db.deleteUser(req.params.id);
+  const user = await db.deleteUser(req.params.id);
   const favoriteChargers = await db.anonymizeFavoriteChargerFeedback(req.auth.user);
-  res.json(favoriteChargers);
+  res.json({
+      user: user,
+      favoriteChargers: favoriteChargers
+  );
 });
 
 app.listen(PORT, () => {
