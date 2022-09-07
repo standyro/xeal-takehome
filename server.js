@@ -151,6 +151,7 @@ app.get('/users/:username', async (req, res) => {
 
 app.delete('/users/:id', async (req, res) => {
   const user = await db.deleteUser(req.params.id);
+  const favoriteChargers = await db.anonymizeFavoriteChargers(req.auth.user);
   res.json(user);
 });
 
