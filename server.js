@@ -114,7 +114,8 @@ app.get('/chargers/:charger_id/feedback', async (req, res) => {
 });
 
 app.post('/chargers/:charger_id/feedback', async (req, res) => {
-  const feedbackWithDate = _.merge(req.body, { date: moment().toISOString() });
+  const feedbackWithUser = _.merge(req.body, { user: req.auth.user });
+  const feedbackWithDate = _.merge(feedbackWithUser, { date: moment().toISOString() });
   const chargersWithFeedback = _.merge(feedbackWithDate, { charger_id: req.params.charger_id });
   const feedback = await db.insertFeedback(chargersWithFeedback);
   res.json({ feedback });
@@ -150,9 +151,9 @@ app.get('/users/:username', async (req, res) => {
 });
 
 app.delete('/users/:id', async (req, res) => {
-  const user = await db.deleteUser(req.params.id);
-  const favoriteChargers = await db.anonymizeFavoriteChargers(req.auth.user);
-  res.json(user);
+//   const user = await db.deleteUser(req.params.id);
+  const favoriteChargers = await db.anonymizeFavoriteChargerFeedback(req.auth.user);
+  res.json(favoriteChargers);
 });
 
 app.listen(PORT, () => {

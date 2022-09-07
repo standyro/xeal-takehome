@@ -52,8 +52,8 @@ const insertFavoriteChargers = async (favoriteCharger) => {
   return await collection.insertOne(favoriteCharger);
 };
 
-const anonymizeFavoriteChargers = async (user) => {
-  const collection = db.collection('favorite_chargers');
+const anonymizeFavoriteChargerFeedback = async (user) => {
+  const collection = db.collection('feedback');
   return await collection.updateMany({user: user}, {$set: {user: null}})
 };
 
@@ -77,7 +77,7 @@ exports.getUsers = getUsers;
 exports.deleteUser = deleteUser;
 exports.getFavoriteChargers = getFavoriteChargers;
 exports.insertFavoriteChargers = insertFavoriteChargers;
-exports.anonymizeFavoriteChargers = anonymizeFavoriteChargers;
+exports.anonymizeFavoriteChargerFeedback = anonymizeFavoriteChargerFeedback;
 exports.getFeedback = getFeedback;
 exports.getFeedbackById = getFeedbackById;
 exports.insertFeedback = insertFeedback;
